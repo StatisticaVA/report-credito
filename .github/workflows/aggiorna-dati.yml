@@ -3,7 +3,11 @@
 #  - i giorni 28, 29, 30 e 31 alle 18 UTC (20 italiane): i giorni che il mese non ha vengono saltati, ma il 28
 #    c'è sempre, quindi anche febbraio è coperto (il 29 solo negli anni bisestili);
 #  - il giorno 2 alle 6 UTC, come ultimo controllo.
-# Si può lanciare anche a mano: scheda «Actions» → «Aggiorna dati Banca d'Italia» → «Run workflow».
+# Si può lanciare anche a mano: scheda «Actions» → «Aggiorna dati Banca d'Italia» → «Run workflow»
+# (spuntando «Prova» si simula un problema, per controllare che l'e-mail di avviso arrivi).
+# Avviso per e-mail SOLO se qualcosa non funziona (sito della Banca d'Italia che non risponde, tavola cambiata…):
+# segnala_problemi.py apre una segnalazione (issue) chiara in italiano, che GitHub manda per e-mail; quando torna
+# tutto a posto la chiude da solo. Se la Banca d'Italia non ha pubblicato dati nuovi non arriva nessuna e-mail.
 name: Aggiorna dati Banca d'Italia
 
 on:
@@ -11,22 +15,33 @@ on:
     - cron: "0 18 28-31 * *"
     - cron: "0 6 2 * *"
   workflow_dispatch:
+    inputs:
+      prova:
+        description: "Prova: simula un problema per controllare che l'e-mail di avviso arrivi"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
   pages: write
+  issues: write
 
 jobs:
   aggiorna:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
       - name: Scarica e filtra le tavole
-        run: python3 aggiorna_dati.py
+        id: scarica
+        env:
+          PROVA_ERRORE: ${{ inputs.prova }}
+        run: python3 aggiorna_dati.py --esito "$RUNNER_TEMP/esito.json"
 
       - name: Salva i dati nel repository
+        id: salva
+        if: steps.scarica.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -48,3 +63,9 @@ jobs:
             # ricostruisce il sito GitHub Pages con i dati nuovi
             gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Richiesta di build di Pages non riuscita (il sito si aggiorna comunque al prossimo push)."
           fi
+
+      - name: Avvisa per e-mail se qualcosa non ha funzionato
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 segnala_problemi.py --esito "$RUNNER_TEMP/esito.json" --scarica "${{ steps.scarica.outcome }}" --salva "${{ steps.salva.outcome }}"

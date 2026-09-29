@@ -82,6 +82,7 @@ CONTENUTO DELLA CARTELLA
                                          aggiornati dal computer di GitHub
 - dati/aggiornamento.json                data dell'ultimo scaricamento
 - aggiorna_dati.py                       programma che scarica e filtra i dati (lo usa GitHub; a mano: python3 aggiorna_dati.py)
+- segnala_problemi.py                    programma che manda l'avviso (segnalazione + e-mail) solo se qualcosa non funziona
 - .github/workflows/aggiorna-dati.yml    istruzioni per GitHub: quando lanciare aggiorna_dati.py (28-31 e 2 di ogni mese)
 
 AGGIORNAMENTO AUTOMATICO (GitHub)
@@ -90,4 +91,12 @@ Copia sull'account personale: https://lucaportu.github.io/report-credito/ (repos
 Sul sito pubblicato i dati si aggiornano da soli: controllo i giorni 28, 29, 30, 31 e 2 di ogni mese.
 Il bot salva solo quando la Banca d'Italia ha pubblicato dati nuovi (più un salvataggio fisso il giorno 2).
 Per forzare un aggiornamento: sul repository GitHub → scheda «Actions» → «Aggiorna dati Banca d'Italia» → «Run workflow».
-Se l'aggiornamento non riesce, GitHub manda un'e-mail: nel frattempo si usa lo ZIP (passo 2).
+E-MAIL DI AVVISO: arriva SOLO se qualcosa non funziona (il sito della Banca d'Italia non risponde nemmeno
+riprovando per circa 10 minuti, la Banca d'Italia ha cambiato una tavola, errore del programma…). Se la Banca d'Italia
+non ha ancora pubblicato dati nuovi NON arriva niente. L'avviso è una «segnalazione» (Issues) nel repository GitHub,
+con titolo «⚠ Report Credito: l'aggiornamento automatico dei dati della Banca d'Italia NON è riuscito», che GitHub
+manda per e-mail all'account: dice quale tavola, perché, e cosa fare. I dati già sul sito non vengono toccati
+(nel frattempo si può usare lo ZIP, passo 2). Se il problema si ripete arriva un'altra e-mail («si è ripresentato»);
+quando un aggiornamento successivo riesce la segnalazione si chiude da sola e arriva l'e-mail «Risolto».
+Le altre tavole si aggiornano comunque. Per provare l'avviso: «Run workflow» spuntando «Prova».
+L'e-mail arriva all'indirizzo dell'account GitHub (impostazioni GitHub → Notifications: lasciare attive le e-mail).
