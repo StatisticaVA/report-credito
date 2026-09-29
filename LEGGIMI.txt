@@ -1,0 +1,93 @@
+REPORT CREDITO – BANCA D'ITALIA (Varese · Lombardia · Italia)
+==============================================================
+Versione 1.4 – 29/09/2026. Sezioni pronte: DEPOSITI, IMPIEGHI, SOFFERENZE e SPORTELLI.
+
+A COSA SERVE
+Crea le tabelle Excel per Osserva su depositi, impieghi (prestiti) e sofferenze bancarie, con i dati della Banca d'Italia:
+- depositi: tavola TDB10290 «Depositi (esclusi PCT) – per provincia, settore e sottosettore della clientela»;
+- impieghi: tavola TDB10295 «Prestiti (esclusi PCT) – per provincia, settore e sottosettore della clientela»;
+- sofferenze: tavola TRI30401 «Quota delle sofferenze … di pertinenza dei maggiori affidati – per provincia della clientela»
+  (trimestrale) più gli impieghi TDB10295 per la tabella «sofferenze sui impieghi»;
+- sportelli (dati ANNUALI): TDB20207 (sportelli e comuni serviti), TDB20220 (sportelli ogni 100mila abitanti),
+  TDB10227 (dipendenti), TSPAG110 (numero di ATM).
+Non serve installare niente: è una pagina web che funziona nel browser (Chrome, Edge, Firefox, Safari).
+
+COME SI USA (ogni trimestre)
+1. Apri la pagina (sito pubblicato oppure doppio clic su index.html) e scegli la sezione (Depositi, Impieghi, Sofferenze o Sportelli).
+2. Guarda il riquadro «2 · Dati della Banca d'Italia» (si riferisce alla sezione scelta):
+   - se è VERDE («Dati automatici: TDB10290 fino a …»; impieghi TDB10295; sofferenze TRI30401 e TDB10295) i dati sono già caricati, non devi fare niente;
+   - se è ARANCIONE, oppure il mese indicato è vecchio:
+       a) clicca «Scarica TDB10290 dalla Banca d'Italia» (impieghi: «Scarica TDB10295…»): il browser scarica il file
+          BANKITALIA_DIFF_TDB10290.zip (impieghi: BANKITALIA_DIFF_TDB10295.zip, circa 5 MB) nella cartella Download;
+          per le sofferenze i pulsanti sono due (TRI30401 e TDB10295), per gli sportelli quattro: scarica e trascina solo quelli che mancano;
+          (la tavola TSPAG110 degli ATM a volte non si apre nel portale della Banca d'Italia: il pulsante della pagina la scarica lo stesso);
+       b) trascina quel file ZIP nel riquadro tratteggiato (o clicca il riquadro e sceglilo).
+          Non serve aprirlo o scompattarlo.
+3. Scegli anno e trimestre (per gli SPORTELLI solo l'anno: sono dati annuali al 31 dicembre).
+   La pagina propone da sola l'ultimo trimestre disponibile; una volta che li hai scelti
+   non li cambia più, nemmeno se trascini un file. Il riquadro «File pronti» dice sezione e periodo dei file creati.
+4. Nel riquadro «3 · Controllo e tabelle» controlla che le tabelle siano «pronte» e premi «Genera tabelle».
+5. Scarica i file uno per uno oppure tutti insieme con «Scarica tutto (ZIP)».
+
+TABELLE PRODOTTE (nomi come le tabelle di Osserva, in formato .xlsx, foglio «Foglio1»)
+DEPOSITI:
+- Credito_Depositi_Sintesi.xlsx            Varese, Lombardia, Italia: fine trimestre, stesso mese dell'anno prima, variazione %
+                                           (colonne intestate con il trimestre, es. «I trim 2026 (milioni di euro)» e «I trim 2025 (milioni di euro)»)
+- Credito_Depositi_Tempo-trimestrale.xlsx  Varese a fine trimestre dal I trim di 5 anni prima, variazione tendenziale
+- Credito_Depositi_Tempo-annuale.xlsx      SOLO con il IV trimestre: Varese a dicembre di ogni anno dal 2011
+- Credito_Depositi_Tipo-clientela.xlsx     Varese: famiglie consumatrici, imprese private, altro, totale
+IMPIEGHI (stesse tabelle, con i nomi, le intestazioni e le etichette delle tabelle di Osserva degli impieghi):
+- Credito_Impieghi_Sintesi.xlsx            come la Sintesi dei depositi (colonne intestate con il trimestre, in milioni di euro)
+- Credito_Impieghi_Tempo-trimestrale.xlsx  Varese a fine trimestre dal I trim di 5 anni prima, variazione tendenziale
+- Credito_Impieghi_Tempo-annuale.xlsx      SOLO con il IV trimestre: Varese a dicembre di ogni anno dal 2011 (prima variazione vuota)
+- Credito_Impieghi_tipoclientela.xlsx      Varese: famiglie consumatrici, imprese private, altro, totale (periodi scritti «I trim '26»)
+SOFFERENZE (nomi, intestazioni ed etichette delle tabelle di Osserva delle sofferenze):
+- Credito_sofferenze_sintesi.xlsx          Varese, Lombardia, Italia: sofferenze nette (milioni di euro) e numero di affidati nel trimestre
+                                           e nello stesso trimestre dell'anno prima, con le variazioni (colonne intestate con il trimestre)
+- Credito_sofferenze_tempo-trimestre.xlsx  Varese dal I trim di 6 anni prima: sofferenze, affidati e variazioni (periodi «I trim '26»)
+- Credito_sofferenze_tempo-anno.xlsx       SOLO con il IV trimestre: Varese a dicembre di ogni anno dal 2011 (variazioni del 2011 vuote)
+- Credito_sofferenze_sui-impieghi.xlsx     sofferenze in % degli impieghi, Varese, Lombardia, Italia, dal I trim di 6 anni prima
+SPORTELLI (dati annuali; nomi come le tabelle di Osserva degli sportelli):
+- Sportelli_sintesi.xlsx                   Varese, 7 anni fino a quello scelto (colonne intestate con gli anni): comuni serviti da banche,
+                                           sportelli, sportelli ogni 100mila abitanti, dipendenti delle banche, numero di ATM (foglio «Foglio2»)
+- Sportelli_tempo.xlsx                     sportelli di Varese dal 2001 (2001-2014 dalla vecchia tavola TDB10207, ferma al 2016)
+  ATTENZIONE: il numero di ATM esce dopo gli altri dati (fine ottobre dell'anno dopo). Finché manca, la pagina lo dice
+  chiaramente, le tabelle si possono fare ma la cella «N° ATM (*)» dell'ultimo anno resta vuota: rigenerale quando esce.
+Depositi e impieghi: valori in MILIONI di euro arrotondati (la Banca d'Italia li dà in migliaia); variazioni con 2 decimali (come ARROTONDA di Excel).
+I numeri sono salvati come numeri veri (non testo).
+
+QUANDO ESCONO I DATI
+La Banca d'Italia pubblica i dati mensili tra il 27 e il 31 di ogni mese, con circa due mesi di ritardo:
+   marzo → fine maggio · giugno → fine agosto · settembre → fine novembre · dicembre → fine febbraio.
+Le SOFFERENZE sono trimestrali ed escono circa tre mesi dopo la fine del trimestre, a fine marzo, giugno, settembre
+e dicembre (es. i dati di giugno 2026 il 30/09/2026).
+Gli SPORTELLI sono annuali: sportelli, comuni e dipendenti escono a fine marzo dell'anno dopo (il 2025 il 27/03/2026),
+il numero di ATM a fine ottobre dell'anno dopo (il 2024 il 22/10/2025).
+I dati automatici vengono controllati i giorni 28, 29, 30 e 31 di ogni mese (a febbraio il 28, e il 29 negli
+anni bisestili) e ancora il giorno 2 del mese dopo: una pubblicazione viene presa al massimo il giorno dopo.
+Se chiedi un trimestre non ancora pubblicato la pagina lo dice e indica l'ultimo disponibile.
+
+DA SAPERE
+- La Banca d'Italia rivede i dati dell'anno precedente: rifacendo le tabelle in giorni diversi
+  i trimestri passati possono cambiare di poco. È normale: la pagina usa sempre i dati più recenti.
+- Nel riquadro si possono trascinare anche i prospetti Excel scaricati a mano dal portale
+  (file REPORT_….xlsx) o il CSV contenuto nello ZIP. I dati dei file caricati prevalgono su quelli automatici.
+- I file che carichi restano sul tuo computer: la pagina non li invia a nessuno.
+
+CONTENUTO DELLA CARTELLA
+- index.html                             la pagina
+- LEGGIMI.txt                            queste istruzioni
+- dati/TDB10290.csv, TDB10295.csv, TRI30401.csv, TDB20207.csv, TDB20220.csv, TDB10227.csv, TSPAG110.csv
+                                         dati automatici di depositi, impieghi, sofferenze e sportelli (solo Varese, Lombardia, Italia),
+                                         aggiornati dal computer di GitHub
+- dati/aggiornamento.json                data dell'ultimo scaricamento
+- aggiorna_dati.py                       programma che scarica e filtra i dati (lo usa GitHub; a mano: python3 aggiorna_dati.py)
+- .github/workflows/aggiorna-dati.yml    istruzioni per GitHub: quando lanciare aggiorna_dati.py (28-31 e 2 di ogni mese)
+
+AGGIORNAMENTO AUTOMATICO (GitHub)
+Sito dell'ufficio statistica: https://statisticava.github.io/report-credito/ (repository GitHub StatisticaVA/report-credito).
+Copia sull'account personale: https://lucaportu.github.io/report-credito/ (repository lucaportu/report-credito, si aggiorna anch'essa).
+Sul sito pubblicato i dati si aggiornano da soli: controllo i giorni 28, 29, 30, 31 e 2 di ogni mese.
+Il bot salva solo quando la Banca d'Italia ha pubblicato dati nuovi (più un salvataggio fisso il giorno 2).
+Per forzare un aggiornamento: sul repository GitHub → scheda «Actions» → «Aggiorna dati Banca d'Italia» → «Run workflow».
+Se l'aggiornamento non riesce, GitHub manda un'e-mail: nel frattempo si usa lo ZIP (passo 2).

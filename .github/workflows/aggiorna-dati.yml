@@ -1,0 +1,50 @@
+# Aggiornamento automatico dei dati della Banca d'Italia usati dalla pagina.
+# La Banca d'Italia pubblica tra il 27 e la fine del mese. Il controllo gira:
+#  - i giorni 28, 29, 30 e 31 alle 18 UTC (20 italiane): i giorni che il mese non ha vengono saltati, ma il 28
+#    c'è sempre, quindi anche febbraio è coperto (il 29 solo negli anni bisestili);
+#  - il giorno 2 alle 6 UTC, come ultimo controllo.
+# Si può lanciare anche a mano: scheda «Actions» → «Aggiorna dati Banca d'Italia» → «Run workflow».
+name: Aggiorna dati Banca d'Italia
+
+on:
+  schedule:
+    - cron: "0 18 28-31 * *"
+    - cron: "0 6 2 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scarica e filtra le tavole
+        run: python3 aggiorna_dati.py
+
+      - name: Salva i dati nel repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dati
+          # se è cambiata solo la data dell'ultimo controllo (aggiornamento.json) si salva solo il giorno 2 o se lanciato
+          # a mano: un salvataggio al mese tiene attivo il repository (GitHub ferma i cron dopo 60 giorni senza modifiche)
+          cambiati="$(git diff --cached --name-only)"
+          if [ "$cambiati" = "dati/aggiornamento.json" ] && [ "$(date -u +%d)" != "02" ] && [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "Dati della Banca d'Italia invariati: niente da salvare."
+            git reset -q
+          fi
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica."
+          else
+            git commit -m "Dati Banca d'Italia aggiornati il $(date -u +%Y-%m-%d)"
+            git push
+            # ricostruisce il sito GitHub Pages con i dati nuovi
+            gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Richiesta di build di Pages non riuscita (il sito si aggiorna comunque al prossimo push)."
+          fi
