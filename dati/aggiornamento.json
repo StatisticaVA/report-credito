@@ -1,10 +1,10 @@
 {
  "TDB10290": {
   "nome": "Depositi (esclusi PCT) - per provincia, settore e sottosettore della clientela",
-  "file_banca_italia": "20260828_080650-STAMEN-TDB10290.csv",
-  "scaricato": "2026-09-29T12:37:13Z",
-  "ultimo_dato": "2026-06-30",
-  "righe": 12055,
+  "file_banca_italia": "20260929_080518-STAMEN-TDB10290.csv",
+  "scaricato": "2026-09-30T18:06:27Z",
+  "ultimo_dato": "2026-07-31",
+  "righe": 12122,
   "filtri": {
    "LOC_CTP": [
     "ITC41",
@@ -16,13 +16,13 @@
    ]
   }
  },
- "controllato": "2026-09-29T12:37:13Z",
+ "controllato": "2026-09-30T18:06:27Z",
  "TDB10295": {
   "nome": "Prestiti (esclusi PCT) - per provincia, settore e sottosettore della clientela",
-  "file_banca_italia": "20260828_080650-STAMEN-TDB10295.csv",
-  "scaricato": "2026-09-29T12:37:13Z",
-  "ultimo_dato": "2026-06-30",
-  "righe": 12351,
+  "file_banca_italia": "20260929_080517-STAMEN-TDB10295.csv",
+  "scaricato": "2026-09-30T18:06:27Z",
+  "ultimo_dato": "2026-07-31",
+  "righe": 12422,
   "filtri": {
    "LOC_CTP": [
     "ITC41",
@@ -36,10 +36,10 @@
  },
  "TRI30401": {
   "nome": "Quota delle sofferenze (al lordo delle svalutazioni e al netto dei passaggi a perdita) di pertinenza dei maggiori affidati - per provincia della clientela",
-  "file_banca_italia": "20260916_123103-STACORIS-TRI30401.csv",
-  "scaricato": "2026-09-29T12:37:13Z",
-  "ultimo_dato": "2026-03-31",
-  "righe": 1152,
+  "file_banca_italia": "20260929_084546-STACORIS-TRI30401.csv",
+  "scaricato": "2026-09-30T18:06:27Z",
+  "ultimo_dato": "2026-06-30",
+  "righe": 1170,
   "filtri": {
    "SEDELEG_SOGG": [
     "ITC41",
@@ -51,7 +51,7 @@
  "TDB20207": {
   "nome": "Banche e sportelli - per provincia e gruppo istituzionale di banche",
   "file_banca_italia": "20260701_152200-STAATER-TDB20207.csv",
-  "scaricato": "2026-09-29T12:37:13Z",
+  "scaricato": "2026-09-30T18:06:27Z",
   "ultimo_dato": "2025-12-31",
   "righe": 88,
   "filtri": {
@@ -68,7 +68,7 @@
  "TDB20220": {
   "nome": "Numero sportelli per 100.000 abitanti - per provincia",
   "file_banca_italia": "20260701_152202-STAATER-TDB20220.csv",
-  "scaricato": "2026-09-29T12:37:13Z",
+  "scaricato": "2026-09-30T18:06:27Z",
   "ultimo_dato": "2025-12-31",
   "righe": 33,
   "filtri": {
@@ -82,7 +82,7 @@
  "TDB10227": {
   "nome": "Dipendenti - per provincia",
   "file_banca_italia": "20260701_152202-STAATER-TDB10227.csv",
-  "scaricato": "2026-09-29T12:37:13Z",
+  "scaricato": "2026-09-30T18:06:27Z",
   "ultimo_dato": "2025-12-31",
   "righe": 33,
   "filtri": {
@@ -96,7 +96,7 @@
  "TSPAG110": {
   "nome": "ATM e POS - per provincia di sportello",
   "file_banca_italia": "20251022_151503-TIMESERIES-MULTICUBE.csv",
-  "scaricato": "2026-09-29T12:37:13Z",
+  "scaricato": "2026-09-30T18:06:27Z",
   "ultimo_dato": "2024-12-31",
   "righe": 28,
   "filtri": {
