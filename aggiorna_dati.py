@@ -49,7 +49,8 @@ TAVOLE = [
     {"codice": "TDB10227", "nome": "Dipendenti - per provincia",
      "filtri": {"LOC_SPORT": TERRITORI}},
     # tavola a serie storiche: una colonna per serie «SDP_LOCATM.A.<ente>.<fenomeno>.<territorio>», date «2024/12/31»
-    {"codice": "TSPAG110", "nome": "ATM e POS - per provincia di sportello",
+    # (dal 06/10/2026 TSDPT140 al posto di TSPAG110: stesse colonne e stessi valori, ma TSPAG110 è ferma al 2024)
+    {"codice": "TSDPT140", "nome": "ATM e POS - per provincia di sportello",
      "serie": TERRITORI},
 ]
 # colonne che devono esserci in ogni tavola (oltre a quelle dei filtri)

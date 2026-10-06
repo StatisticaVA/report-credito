@@ -1,6 +1,7 @@
 REPORT CREDITO – BANCA D'ITALIA (Varese · Lombardia · Italia)
 ==============================================================
-Versione 1.4 – 29/09/2026. Sezioni pronte: DEPOSITI, IMPIEGHI, SOFFERENZE e SPORTELLI.
+Versione 1.5 – 06/10/2026. Sezioni pronte: DEPOSITI, IMPIEGHI, SOFFERENZE e SPORTELLI.
+(1.5: il numero di ATM viene dalla nuova tavola TSDPT140, che ha già il 2025; la vecchia TSPAG110 è ferma al 2024.)
 
 A COSA SERVE
 Crea le tabelle Excel per Osserva su depositi, impieghi (prestiti) e sofferenze bancarie, con i dati della Banca d'Italia:
@@ -9,7 +10,7 @@ Crea le tabelle Excel per Osserva su depositi, impieghi (prestiti) e sofferenze 
 - sofferenze: tavola TRI30401 «Quota delle sofferenze … di pertinenza dei maggiori affidati – per provincia della clientela»
   (trimestrale) più gli impieghi TDB10295 per la tabella «sofferenze sui impieghi»;
 - sportelli (dati ANNUALI): TDB20207 (sportelli e comuni serviti), TDB20220 (sportelli ogni 100mila abitanti),
-  TDB10227 (dipendenti), TSPAG110 (numero di ATM).
+  TDB10227 (dipendenti), TSDPT140 (numero di ATM).
 Non serve installare niente: è una pagina web che funziona nel browser (Chrome, Edge, Firefox, Safari).
 
 COME SI USA (ogni trimestre)
@@ -20,7 +21,7 @@ COME SI USA (ogni trimestre)
        a) clicca «Scarica TDB10290 dalla Banca d'Italia» (impieghi: «Scarica TDB10295…»): il browser scarica il file
           BANKITALIA_DIFF_TDB10290.zip (impieghi: BANKITALIA_DIFF_TDB10295.zip, circa 5 MB) nella cartella Download;
           per le sofferenze i pulsanti sono due (TRI30401 e TDB10295), per gli sportelli quattro: scarica e trascina solo quelli che mancano;
-          (la tavola TSPAG110 degli ATM a volte non si apre nel portale della Banca d'Italia: il pulsante della pagina la scarica lo stesso);
+          (per gli ATM la tavola giusta è TSDPT140; la vecchia TSPAG110 è ferma al 2024 e nel portale dà errore);
        b) trascina quel file ZIP nel riquadro tratteggiato (o clicca il riquadro e sceglilo).
           Non serve aprirlo o scompattarlo.
 3. Scegli anno e trimestre (per gli SPORTELLI solo l'anno: sono dati annuali al 31 dicembre).
@@ -51,7 +52,7 @@ SPORTELLI (dati annuali; nomi come le tabelle di Osserva degli sportelli):
 - Sportelli_sintesi.xlsx                   Varese, 7 anni fino a quello scelto (colonne intestate con gli anni): comuni serviti da banche,
                                            sportelli, sportelli ogni 100mila abitanti, dipendenti delle banche, numero di ATM (foglio «Foglio2»)
 - Sportelli_tempo.xlsx                     sportelli di Varese dal 2001 (2001-2014 dalla vecchia tavola TDB10207, ferma al 2016)
-  ATTENZIONE: il numero di ATM esce dopo gli altri dati (fine ottobre dell'anno dopo). Finché manca, la pagina lo dice
+  ATTENZIONE: il numero di ATM esce dopo gli altri dati (il 2025 a maggio 2026). Finché manca, la pagina lo dice
   chiaramente, le tabelle si possono fare ma la cella «N° ATM (*)» dell'ultimo anno resta vuota: rigenerale quando esce.
 Depositi e impieghi: valori in MILIONI di euro arrotondati (la Banca d'Italia li dà in migliaia); variazioni con 2 decimali (come ARROTONDA di Excel).
 I numeri sono salvati come numeri veri (non testo).
@@ -62,7 +63,7 @@ La Banca d'Italia pubblica i dati mensili tra il 27 e il 31 di ogni mese, con ci
 Le SOFFERENZE sono trimestrali ed escono circa tre mesi dopo la fine del trimestre, a fine marzo, giugno, settembre
 e dicembre (es. i dati di giugno 2026 il 30/09/2026).
 Gli SPORTELLI sono annuali: sportelli, comuni e dipendenti escono a fine marzo dell'anno dopo (il 2025 il 27/03/2026),
-il numero di ATM a fine ottobre dell'anno dopo (il 2024 il 22/10/2025).
+il numero di ATM più tardi, con le statistiche sui pagamenti (il 2025 c'era già a maggio 2026).
 I dati automatici vengono controllati i giorni 28, 29, 30 e 31 di ogni mese (a febbraio il 28, e il 29 negli
 anni bisestili) e ancora il giorno 2 del mese dopo: una pubblicazione viene presa al massimo il giorno dopo.
 Se chiedi un trimestre non ancora pubblicato la pagina lo dice e indica l'ultimo disponibile.
@@ -77,7 +78,7 @@ DA SAPERE
 CONTENUTO DELLA CARTELLA
 - index.html                             la pagina
 - LEGGIMI.txt                            queste istruzioni
-- dati/TDB10290.csv, TDB10295.csv, TRI30401.csv, TDB20207.csv, TDB20220.csv, TDB10227.csv, TSPAG110.csv
+- dati/TDB10290.csv, TDB10295.csv, TRI30401.csv, TDB20207.csv, TDB20220.csv, TDB10227.csv, TSDPT140.csv
                                          dati automatici di depositi, impieghi, sofferenze e sportelli (solo Varese, Lombardia, Italia),
                                          aggiornati dal computer di GitHub
 - dati/aggiornamento.json                data dell'ultimo scaricamento

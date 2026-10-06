@@ -224,15 +224,15 @@
       <p class="nota">Fonte: tavole della Banca d'Italia, ente segnalante «Banche», territorio = localizzazione dello sportello:
         <b>TDB20207</b> «Banche e sportelli – per provincia» (numero degli sportelli, numero di comuni serviti da banche),
         <b>TDB20220</b> (numero sportelli per 100.000 abitanti), <b>TDB10227</b> «Dipendenti – per provincia» (numero dipendenti),
-        <b>TSPAG110</b> «ATM e POS – per provincia di sportello» (numero di ATM). Gli sportelli 2001–2014 vengono dalla vecchia tavola TDB10207
+        <b>TSDPT140</b> «ATM e POS – per provincia di sportello» (numero di ATM; dal 2026 sostituisce la vecchia TSPAG110, ferma al 2024). Gli sportelli 2001–2014 vengono dalla vecchia tavola TDB10207
         (ferma al 2016, valori fissi nella pagina, uguali a quelli di Osserva). Valori usati così come li dà la Banca d'Italia.</p>
       <p class="nota">Dati annuali al 31 dicembre: sportelli, comuni e dipendenti escono a fine marzo dell'anno dopo (tavole «articolazione territoriale»);
-        il numero di ATM esce con le statistiche sui pagamenti a fine ottobre dell'anno dopo (es. il 2024 il 22/10/2025): finché manca, la cella dell'ATM resta vuota e la pagina lo segnala.
+        il numero di ATM esce con le statistiche sui pagamenti, dopo gli altri dati (il 2025 c'era già a maggio 2026): finché manca, la cella dell'ATM resta vuota e la pagina lo segnala.
         I dati automatici vengono controllati i giorni 28, 29, 30 e 31 di ogni mese e il 2 del mese dopo. I file che carichi restano sul tuo computer.</p>
     </details>
   </section>
 </main>
-<footer>Fonte: Banca d'Italia – Base Dati Statistica · elaborazione Camera di Commercio di Varese · versione 1.4</footer>
+<footer>Fonte: Banca d'Italia – Base Dati Statistica · elaborazione Camera di Commercio di Varese · versione 1.5</footer>
 
 <script id="motore">
 "use strict";
@@ -293,18 +293,19 @@ const SEZIONI = {
   },
   // Sportelli (file di lavoro Sportelli_anno_2024.xls): dati ANNUALI al 31 dicembre, si sceglie solo l'anno.
   // Tavole «articolazione territoriale» TDB20207 (sportelli, comuni serviti), TDB20220 (sportelli ogni 100.000 abitanti),
-  // TDB10227 (dipendenti), più TSPAG110 (numero di ATM, statistiche sui pagamenti: formato a serie storiche, esce dopo gli altri).
+  // TDB10227 (dipendenti), più TSDPT140 (numero di ATM, statistiche sui pagamenti: formato a serie storiche, esce dopo gli altri;
+  // dal 06/10/2026 al posto di TSPAG110, stesse colonne e stessi valori ma ferma al 2024).
   // Territorio = LOC_SPORT «Localizzazione dello sportello»; nessun settore (nella chiave il settore è vuoto).
   sportelli: {
     nome: "Sportelli", deiNome: "degli sportelli", pronta: true, schema: "sportelli", annuale: true,
-    tavole: ["TDB20207", "TDB20220", "TDB10227", "TSPAG110"], ente: "1100010", fenec: "30990009", fenecAtm: "1700802",
+    tavole: ["TDB20207", "TDB20220", "TDB10227", "TSDPT140"], ente: "1100010", fenec: "30990009", fenecAtm: "1700802",
     altriFenec: ["30990005", "30990011", "1001503", "1700802", "1700808"],
     // righe della Sintesi: [etichetta del modello, fenomeno, indispensabile, nome nei messaggi]; l'ATM se manca lascia la cella vuota (scelta dell'utente)
     indicatori: [["Comuni serviti da banche", "30990005", true, "comuni serviti"], ["Sportelli", "30990009", true, "sportelli"],
                  ["Sportelli ogni 100mila abitanti", "30990011", true, "sportelli ogni 100mila abitanti"],
                  ["Dipendenti banche a Varese", "1001503", true, "dipendenti"], ["N° ATM (*)", "1700802", false, "ATM"]],
     anniSintesi: 7, annoInizioTempo: 2001, cartella: "Report_credito_sportelli",
-    uscita: "una volta l'anno: sportelli, comuni e dipendenti a fine marzo dell'anno dopo; il numero di ATM a fine ottobre dell'anno dopo (statistiche sui pagamenti)",
+    uscita: "una volta l'anno: sportelli, comuni e dipendenti a fine marzo dell'anno dopo; il numero di ATM più tardi, con le statistiche sui pagamenti (il 2025 a maggio 2026)",
     forma: { file: { sintesi: "Sportelli_sintesi", tempo: "Sportelli_tempo" } },
   },
 };
@@ -542,7 +543,7 @@ const territoriUsati = new Set(TERRITORI.map(t => t[0]));
 function leggiCsvBdi(testo) {
   const nl = testo.indexOf("\n");
   const testa = (nl < 0 ? testo : testo.slice(0, nl)).replace(/\r$/, "").split(";").map(s => s.replace(/^"|"$/g, "").trim());
-  // tavole a serie storiche (es. TSPAG110): una colonna per serie «SDP_LOCATM.A.<ente>.<fenomeno>.<territorio>»
+  // tavole a serie storiche (es. TSDPT140): una colonna per serie «SDP_LOCATM.A.<ente>.<fenomeno>.<territorio>»
   if (!testa.includes("FENEC") && testa.some(c => RE_SERIE.test(c))) return leggiCsvSerie(testo, testa);
   const iLoc = ["LOC_CTP", "SEDELEG_SOGG", "LOC_SPORT"].map(c => testa.indexOf(c)).find(i => i >= 0) ?? -1;
   const col = ["DATA_OSS", "ENTE_SEGN", "FENEC", "VALORE"].map(c => testa.indexOf(c));
@@ -576,7 +577,7 @@ function leggiCsvBdi(testo) {
   return { valori, fenec: [...fenec], ultima, righe };
 }
 
-// CSV a serie storiche (TSPAG110): "DATA_OSS";"SDP_LOCATM.A.1100010.1700802.IT";… date "2024/12/31"; settore vuoto nella chiave
+// CSV a serie storiche (TSDPT140, prima TSPAG110): "DATA_OSS";"SDP_LOCATM.A.1100010.1700802.IT";… date "2024/12/31"; settore vuoto nella chiave
 const RE_SERIE = /^[A-Z_]+\.[A-Z]\.(\d+)\.(\d+)\.([A-Z0-9]+)$/;
 function leggiCsvSerie(testo, testa) {
   const iD = testa.indexOf("DATA_OSS"), colonne = [];
@@ -695,8 +696,8 @@ function numeroIT(v) {
 }
 
 // codice di una tavola nel nome del file (TDB10290, TRI30401…) e CSV dei dati (prima riga con la colonna DATA_OSS)
-const RE_TAVOLA = /(?:TDB|TRI)\d{5}|TSPAG\d{3}/;
-const TAVOLE_SENZA_SETTORE = new Set(["TDB20207", "TDB20220", "TDB10227", "TSPAG110", "TDB10207"]);
+const RE_TAVOLA = /(?:TDB|TRI)\d{5}|TSPAG\d{3}|TSDPT\d{3}/;
+const TAVOLE_SENZA_SETTORE = new Set(["TDB20207", "TDB20220", "TDB10227", "TSDPT140", "TSPAG110", "TDB10207"]);
 const testaBdi = testo => /^\s*(?:"?[A-Z_]+"?;)*"?DATA_OSS"?;/.test(testo.slice(0, 300));
 
 // qualunque file: ZIP della Banca d'Italia, CSV, prospetto .xlsx
@@ -1245,7 +1246,7 @@ if (typeof module !== "undefined" && module.exports) {
 
   // avviso ben visibile quando manca il numero di ATM dell'anno (richiesta dell'utente 29/09/2026)
   const testoAtm = anno => `<b>⚠ Manca il numero di ATM del ${anno}.</b> La Banca d'Italia non l'ha ancora pubblicato
-    (statistiche sui pagamenti, tavola TSPAG110, di solito a fine ottobre dell'anno dopo): le tabelle si possono generare, ma nella Sintesi la cella «N° ATM (*)» del ${anno}
+    (statistiche sui pagamenti, tavola TSDPT140, esce dopo gli altri dati): le tabelle si possono generare, ma nella Sintesi la cella «N° ATM (*)» del ${anno}
     resta <b>vuota</b>. Quando il dato esce, rigenera le tabelle.`;
 
   /* ---------- controllo */

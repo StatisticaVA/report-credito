@@ -93,12 +93,12 @@
    ]
   }
  },
- "TSPAG110": {
+ "TSDPT140": {
   "nome": "ATM e POS - per provincia di sportello",
-  "file_banca_italia": "20251022_151503-TIMESERIES-MULTICUBE.csv",
-  "scaricato": "2026-10-02T06:03:28Z",
-  "ultimo_dato": "2024-12-31",
-  "righe": 28,
+  "file_banca_italia": "20260518_182907-TIMESERIES-MULTICUBE.csv",
+  "scaricato": "2026-10-06T10:15:29Z",
+  "ultimo_dato": "2025-12-31",
+  "righe": 29,
   "filtri": {
    "territori": [
     "ITC41",
