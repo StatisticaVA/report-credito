@@ -2,7 +2,7 @@
  "TDB10290": {
   "nome": "Depositi (esclusi PCT) - per provincia, settore e sottosettore della clientela",
   "file_banca_italia": "20260929_080518-STAMEN-TDB10290.csv",
-  "scaricato": "2026-10-02T06:03:28Z",
+  "scaricato": "2026-10-06T10:19:48Z",
   "ultimo_dato": "2026-07-31",
   "righe": 12122,
   "filtri": {
@@ -16,11 +16,11 @@
    ]
   }
  },
- "controllato": "2026-10-02T06:03:28Z",
+ "controllato": "2026-10-06T10:19:48Z",
  "TDB10295": {
   "nome": "Prestiti (esclusi PCT) - per provincia, settore e sottosettore della clientela",
   "file_banca_italia": "20260929_080517-STAMEN-TDB10295.csv",
-  "scaricato": "2026-10-02T06:03:28Z",
+  "scaricato": "2026-10-06T10:19:48Z",
   "ultimo_dato": "2026-07-31",
   "righe": 12422,
   "filtri": {
@@ -37,7 +37,7 @@
  "TRI30401": {
   "nome": "Quota delle sofferenze (al lordo delle svalutazioni e al netto dei passaggi a perdita) di pertinenza dei maggiori affidati - per provincia della clientela",
   "file_banca_italia": "20260929_084546-STACORIS-TRI30401.csv",
-  "scaricato": "2026-10-02T06:03:28Z",
+  "scaricato": "2026-10-06T10:19:48Z",
   "ultimo_dato": "2026-06-30",
   "righe": 1170,
   "filtri": {
@@ -51,7 +51,7 @@
  "TDB20207": {
   "nome": "Banche e sportelli - per provincia e gruppo istituzionale di banche",
   "file_banca_italia": "20260701_152200-STAATER-TDB20207.csv",
-  "scaricato": "2026-10-02T06:03:28Z",
+  "scaricato": "2026-10-06T10:19:48Z",
   "ultimo_dato": "2025-12-31",
   "righe": 88,
   "filtri": {
@@ -68,7 +68,7 @@
  "TDB20220": {
   "nome": "Numero sportelli per 100.000 abitanti - per provincia",
   "file_banca_italia": "20260701_152202-STAATER-TDB20220.csv",
-  "scaricato": "2026-10-02T06:03:28Z",
+  "scaricato": "2026-10-06T10:19:48Z",
   "ultimo_dato": "2025-12-31",
   "righe": 33,
   "filtri": {
@@ -82,7 +82,7 @@
  "TDB10227": {
   "nome": "Dipendenti - per provincia",
   "file_banca_italia": "20260701_152202-STAATER-TDB10227.csv",
-  "scaricato": "2026-10-02T06:03:28Z",
+  "scaricato": "2026-10-06T10:19:48Z",
   "ultimo_dato": "2025-12-31",
   "righe": 33,
   "filtri": {
@@ -96,7 +96,7 @@
  "TSDPT140": {
   "nome": "ATM e POS - per provincia di sportello",
   "file_banca_italia": "20260518_182907-TIMESERIES-MULTICUBE.csv",
-  "scaricato": "2026-10-06T10:15:29Z",
+  "scaricato": "2026-10-06T10:19:48Z",
   "ultimo_dato": "2025-12-31",
   "righe": 29,
   "filtri": {
