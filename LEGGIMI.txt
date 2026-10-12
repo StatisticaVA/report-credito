@@ -88,7 +88,6 @@ CONTENUTO DELLA CARTELLA
 
 AGGIORNAMENTO AUTOMATICO (GitHub)
 Sito dell'ufficio statistica: https://statisticava.github.io/report-credito/ (repository GitHub StatisticaVA/report-credito).
-Copia sull'account personale: https://lucaportu.github.io/report-credito/ (repository lucaportu/report-credito, si aggiorna anch'essa).
 Sul sito pubblicato i dati si aggiornano da soli: controllo i giorni 28, 29, 30, 31 e 2 di ogni mese.
 Il bot salva solo quando la Banca d'Italia ha pubblicato dati nuovi (più un salvataggio fisso il giorno 2).
 Per forzare un aggiornamento: sul repository GitHub → scheda «Actions» → «Aggiorna dati Banca d'Italia» → «Run workflow».
